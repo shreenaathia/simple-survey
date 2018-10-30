@@ -5,6 +5,14 @@ var fs = require("fs");
 app.use(bodyParser.json())
 var path = require ('path');
 
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://temp:123456a@ds237723.mlab.com:37723/simple-survey";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  db.close();
+});
 
 app.get('/getScore', function (req, res) {
   fs.readFile('index.html', function (err, data) {
